@@ -1,10 +1,15 @@
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import NewProduct from './pages/NewProduct';
 
 function App() {
   return (
-    <div>
-      <h1>Bienvenido a la API de productos</h1>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/nuevo" element={<NewProduct />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
