@@ -1,73 +1,83 @@
-# React + TypeScript + Vite
+# SPA Gestión de Productos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una Single Page Application (SPA) construida con **React + Vite + TypeScript + Tailwind CSS** para gestionar productos usando la API pública de [https://dummyjson.com/products](https://dummyjson.com/products).
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Pantalla principal** (`/`):  
+  - Lista de productos (id, title, price)
+  - Búsqueda por título
+  - Paginación client-side
+  - Botón "Añadir" para navegar a `/nuevo`
+  - Botón "Editar" que abre un modal para editar (title, price)
+  - Botón "Eliminar" que abre un modal de confirmación
+  - Estados de UI: loading, error, validaciones mínimas
 
-## React Compiler
+- **Pantalla de creación** (`/nuevo`):  
+  - Formulario para crear producto (title, price)
+  - Validaciones mínimas (title requerido, price > 0)
+  - POST a `/products/add` y regreso a `/` con la lista actualizada
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Consumo de API real**:  
+  - Endpoints GET, POST, PUT, DELETE a [dummyjson.com/products](https://dummyjson.com/products)
 
-## Expanding the ESLint configuration
+- **Estilos**:  
+  - 100% con Tailwind CSS
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Estructura de Carpetas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── App.tsx
+├── main.tsx
+├── index.css
+├── types/
+│   └── product.ts
+├── services/
+│   └── productService.ts
+├── components/
+│   ├── EditProductModal.tsx
+│   ├── DeleteProductModal.tsx
+├── pages/
+│   ├── Home.tsx
+│   └── NewProduct.tsx
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Instalación y uso
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+1. **Clona el repositorio**
+   ```
+   git clone <url-del-repo>
+   cd segundo-parcial
+   ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+2. **Instala dependencias**
+   ```
+   npm install
+   ```
+
+3. **Configura Tailwind CSS**  
+   (Ya configurado, pero si necesitas reinstalar)
+   ```
+   npm install -D tailwindcss postcss autoprefixer
+   npx tailwindcss init -p
+   ```
+
+4. **Inicia el servidor de desarrollo**
+   ```
+   npm run dev
+   ```
+
+5. **Abre en tu navegador**
+   ```
+   http://localhost:5173/
+   ```
+
+## Notas
+
+- El proyecto usa la API pública de [dummyjson.com](https://dummyjson.com/products), por lo que los cambios no son persistentes.
+- Si Tailwind no aplica los estilos, revisa la configuración de `tailwind.config.js`, `postcss.config.js` y asegúrate de importar `index.css` en `main.tsx`.
+
+---
+
+**¡Listo para gestionar productos de forma moderna y rápida!**
