@@ -80,4 +80,4 @@ src/
 
 ---
 
-**¡Listo para gestionar productos de forma moderna y rápida!**
+
